@@ -3,7 +3,7 @@ import os
 from yt_dlp import YoutubeDL
 
 # Load the CSV file
-csv_file = 'world_music.csv.csv'  # Replace with your actual file name
+csv_file = 'world_music_data.csv'
 df = pd.read_csv(csv_file)
 
 # Create a directory to store downloaded songs
