@@ -129,6 +129,9 @@ def categorize_genre(tag):
             return genre
     return 'Other'
 
+# Initialize track ID counter
+track_id_counter = 1
+
 # Fetch tracks based on tags and filter by location
 for tag in tags:
     tracks = fetch_top_tracks_by_tag(tag)
@@ -149,20 +152,25 @@ for tag in tags:
         # Categorize genre based on the tag
         genre = categorize_genre(tag)
         
-        # Add track ID
-        track_id = track.get('url').split('/')[-1] if track.get('url') else None
+        # Get the track URL to generate track ID
+        track_url = track.get('url')
+        track_id = track.get('url').split('/')[-1] if track_url else None
+        
+        # Add incremental track ID
+        track_data = {
+            'track_id_number': track_id_counter,  # Add the incremental ID
+            'track_id': track_id,
+            'track_name': track.get('name'),
+            'artist_name': artist_name,
+            'location': location,
+            'listeners': listeners,
+            'genre': genre
+        }
         
         # Check if the track should be included
         if should_add_track(location):
-            track_data = {
-                'track_id': track_id,
-                'track_name': track.get('name'),
-                'artist_name': artist_name,
-                'location': location,
-                'listeners': listeners,
-                'genre': genre
-            }
             all_metadata.append(track_data)
+            track_id_counter += 1  # Increment the track ID for the next track
         
         time.sleep(0.5)  # Avoid hitting the API too quickly
 
