@@ -65,6 +65,6 @@ def save_features_to_csv(audio_folder, output_csv):
                     print(f"Failed to extract features for {audio_file}.")
 
 # Example usage
-audio_folder = 'songs'
+audio_folder = 'downloaded_songs'
 output_csv = 'audio_features.csv'
 save_features_to_csv(audio_folder, output_csv)
