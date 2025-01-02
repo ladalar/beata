@@ -177,6 +177,15 @@ for tag in tags:
 # Convert the metadata to a DataFrame
 df = pd.DataFrame(all_metadata)
 
+# Define the path to the data folder inside the current folder
+data_folder = os.path.join(os.path.dirname(__file__), 'data')
+
+# Ensure the data folder exists
+os.makedirs(data_folder, exist_ok=True)
+
+# Define the full path to the CSV file
+csv_file_path = os.path.join(data_folder, 'world_music.csv')
+
 # Save to a CSV file
-df.to_csv('world_music.csv', index=False)
-print("Metadata saved to world_music.csv")
+df.to_csv(csv_file_path, index=False)
+print(f"Metadata saved to {csv_file_path}")

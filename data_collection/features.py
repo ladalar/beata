@@ -64,7 +64,15 @@ def save_features_to_csv(audio_folder, output_csv):
                 else:
                     print(f"Failed to extract features for {audio_file}.")
 
+import os
+
+# Define the path to the data folder inside the current folder
+data_folder = os.path.join(os.path.dirname(__file__), 'data')
+
+# Ensure the data folder exists
+os.makedirs(data_folder, exist_ok=True)
+
 # Example usage
 audio_folder = 'downloaded_songs'
-output_csv = 'audio_features.csv'
+output_csv = os.path.join(data_folder, 'audio_features.csv')
 save_features_to_csv(audio_folder, output_csv)

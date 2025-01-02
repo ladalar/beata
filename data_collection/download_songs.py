@@ -2,8 +2,11 @@ import pandas as pd
 import os
 from yt_dlp import YoutubeDL
 
-# Load the CSV file
-csv_file = 'world_music_data.csv'
+# Define the path to the data folder
+data_folder = os.path.join(os.path.dirname(__file__), 'data')
+
+# Load the CSV file from the data folder
+csv_file = os.path.join(data_folder, 'world_music.csv')
 df = pd.read_csv(csv_file)
 
 # Create a directory to store downloaded songs
