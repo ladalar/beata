@@ -15,7 +15,7 @@ This project focuses on predicting geographical locations for music based on ext
 1. **Audio Feature Extraction**: Extract audio features (MFCCs, Chroma, Spectral Contrast, and Tonnetz) from a set of music tracks.
 2. **Metadata Collection**: Fetch metadata from Last.fm and MusicBrainz, including artist name, location, and genre.
 3. **Location Prediction**: Train a deep learning model using the extracted audio features to predict the geographical coordinates (latitude and longitude).
-4. **Music Generation**: Use AI models (e.g., generative models or style transfer) to generate new music based on the predicted coordinates.
+4. **Music Generation**: Use AI models to generate new music based on the predicted coordinates.
 5. **Output**: The output is a generated track that corresponds to specific geographical coordinates.
 
 ## Project Structure
@@ -125,27 +125,8 @@ python combine_data.py
 
 This will merge `audio_features.csv` and `tracks_with_coordinates.csv` into a comprehensive dataset, `all_data.csv`.
 
-### 5. Training the Deep Learning Model
-
-After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude). You can use the following steps:
-
-- Load the CSV data.
-- Preprocess the data (e.g., normalize the features).
-- Train the model on the features and coordinates.
-- Evaluate the model's performance.
-
-### 6. AI Music Generation
-
-Once the model is trained and you have predicted coordinates, you can use AI techniques to generate music based on those coordinates. This might involve:
-
-- **Style Transfer**: Using pre-trained models to apply a musical style to the generated music.
-- **Generative Models**: Using models like OpenAI's MuseNet or Google's Magenta to generate new music based on input features (e.g., predicted coordinates).
-
-### 7. CSV Output
-
-The scripts will generate a CSV file `all_data.csv` with the following columns:
-
-- **Track Information**:
+#### all_data.csv
+- **Track Information**
     - `track_id`: Unique identifier for each track.
     - `track_name`: Title of the track.
     - `artist_name`: Name of the artist who performed the track.
@@ -169,6 +150,20 @@ The scripts will generate a CSV file `all_data.csv` with the following columns:
 track_id,track_name,artist_name,location,listeners,genre,Country,Capital,Latitude,Longitude,MFCC1,MFCC2,MFCC3,MFCC4,MFCC5,MFCC6,MFCC7,MFCC8,MFCC9,MFCC10,MFCC11,MFCC12,MFCC13,MFCC14,MFCC15,MFCC16,MFCC17,MFCC18,MFCC19,MFCC20,Chroma1,Chroma2,Chroma3,Chroma4,Chroma5,Chroma6,Chroma7,Chroma8,Chroma9,Chroma10,Chroma11,Chroma12,Spectral Contrast1,Spectral Contrast2,Spectral Contrast3,Spectral Contrast4,Spectral Contrast5,Spectral Contrast6,Spectral Contrast7,Tonnetz1,Tonnetz2,Tonnetz3,Tonnetz4,Tonnetz5,Tonnetz6
 1,Saoko,Rosalía,Spain,1357002,Traditional,Spain,Madrid,40.42,-3.75,-77.41459656,52.02815246582031,-3.623052359,26.31342887878418,-6.456990242,4.815507411956787,-0.890465736,1.266771436,-4.186604977,8.584629059,-4.188908577,-1.132911921,-4.31681633,-3.103135586,-6.049440384,-2.329935551,-9.885704994,0.4364224076271057,-5.408226967,-3.179271221,0.423987865,0.4096793234348297,0.3129310607910156,0.3942963778972626,0.3675473928451538,0.2445663064718246,0.2352212965488433,0.3119161128997803,0.5756404995918274,0.451972634,0.3388523757457733,0.3229532837867737,18.671025343659387,16.510451585655943,19.57577634269491,20.28098252185062,20.19127154826591,19.324665797656024,48.27960009715634,-0.027142259,-0.020731049,-0.021391769,0.044810451,-0.007973986,-0.004324663
 ```
+
+### 5. Training the Deep Learning Model
+
+After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude). You can use the following steps:
+
+- Load the CSV data.
+- Preprocess the data (e.g., normalize the features).
+- Train the model on the features and coordinates.
+- Evaluate the model's performance.
+
+### 6. AI Music Generation
+
+Leverage models like **Jukebox** to generate new music tracks based on geographic coordinates. Follow these steps to get started:
+
 
 ### Notes
 
