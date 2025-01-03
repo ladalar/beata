@@ -153,7 +153,7 @@ track_id,track_name,artist_name,location,listeners,genre,Country,Capital,Latitud
 
 ### 5. Training the Deep Learning Model
 
-After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude). You can use the following steps:
+After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude).
 
 - Load the CSV data.
 - Preprocess the data (e.g., normalize the features).
