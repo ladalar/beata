@@ -162,7 +162,7 @@ After gathering sufficient data, use the extracted features to train a deep lear
 
 ### 6. AI Music Generation
 
-Leverage models like **Jukebox** to generate new music tracks based on geographic coordinates. Follow these steps to get started:
+Leverage models like Jukebox to generate new music tracks based on geographic coordinates. Follow these steps to get started:
 
 
 ### Notes
