@@ -40,8 +40,8 @@ This project focuses on predicting geographical locations for music based on ext
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/ladalar/beata
+cd beata
 ```
 
 ### 2. Install Dependencies
