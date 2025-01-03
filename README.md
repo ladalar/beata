@@ -52,7 +52,11 @@ The project requires Python and a few dependencies. To install them, run:
 pip install -r requirements.txt
 ```
 
-### 3. API Keys
+### 3. Collect Data
+
+This repository includes a precompiled dataset, `all_data.csv`, created from a personal collection. To collect and generate new data, follow these steps:
+
+#### Step 1: API Keys
 
 You need a Last.fm API key to fetch data. To obtain your key, follow these steps:
 
@@ -64,57 +68,64 @@ You need a Last.fm API key to fetch data. To obtain your key, follow these steps
 LASTFM_API_KEY=your_lastfm_api_key_here
 ```
 
-### 4. Collect Data
+#### Step 2: Collect Basic Track Data
 
-Once you've set up the environment, collect data:
+Navigate to the data_collection folder and run:
 
 ```bash
 python music_data.py
 ```
 
-This creates `world_music.csv` containing: `track_id`, `track_name`, `artist_name`, `location`, `listeners`, `genre`.
+This script generates a file named `world_music.csv` containing the following columns:
 
-### 5. Add Coordinates
+- `track_id`
+- `track_name`
+- `artist_name`
+- `location`
+- `listeners`
+- `genre`
 
-Add coordinates to the tracks:
+#### Step 3: Add Geographic Coordinates
+
+To enrich the data with geographic coordinates, run:
 
 ```bash
 python add_coordinates.py
 ```
 
-This creates `tracks_with_coordinates.csv`.
+This will create a new file, `tracks_with_coordinates.csv`, which includes the coordinates for each track.
 
-### 6. Download Songs
+#### Step 4: Download Songs
 
-Download the songs:
+Download the audio files for the tracks listed in `world_music.csv` by running:
 
 ```bash
 python download_songs.py
 ```
 
-This saves songs present in `world_music.csv` to a folder `downloaded_songs`.
+The songs will be saved in a folder named `downloaded_songs`.
 
-### 7. Extract Features
+#### Step 5: Extract Audio Features
 
-Extract features from the songs:
+Extract audio features from the downloaded songs with the following command:
 
 ```bash
 python features.py
 ```
 
-This extracts features from the songs in the `downloaded_songs` folder and saves them in `audio_features.csv`.
+This script processes the songs in the `downloaded_songs` folder and saves the extracted features in a file named `audio_features.csv`.
 
-### 8. Combine Data
+#### Step 6: Combine All Data
 
-Combine all data:
+Finally, combine all collected data into a single file:
 
 ```bash
 python combine_data.py
 ```
 
-This combines data from `audio_features.csv` and `tracks_with_coordinates.csv` and saves it in `all_data.csv`.
+This will merge `audio_features.csv` and `tracks_with_coordinates.csv` into a comprehensive dataset, `all_data.csv`.
 
-### 9. Training the Deep Learning Model
+### 5. Training the Deep Learning Model
 
 After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude). You can use the following steps:
 
@@ -123,14 +134,14 @@ After gathering sufficient data, use the extracted features to train a deep lear
 - Train the model on the features and coordinates.
 - Evaluate the model's performance.
 
-### 10. AI Music Generation
+### 6. AI Music Generation
 
 Once the model is trained and you have predicted coordinates, you can use AI techniques to generate music based on those coordinates. This might involve:
 
 - **Style Transfer**: Using pre-trained models to apply a musical style to the generated music.
 - **Generative Models**: Using models like OpenAI's MuseNet or Google's Magenta to generate new music based on input features (e.g., predicted coordinates).
 
-### 11. CSV Output
+### 7. CSV Output
 
 The scripts will generate a CSV file `all_data.csv` with the following columns:
 
