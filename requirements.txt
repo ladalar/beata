@@ -1,6 +1,0 @@
-requests
-pandas
-python-dotenv
-yt-dlp
-librosa
-numpy
