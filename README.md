@@ -1,172 +1,84 @@
+## **Overview**  
+This project aims to predict the popularity category of a song—low, medium, or high listener counts—based on various extracted audio features. By leveraging machine learning techniques, the model classifies songs using key acoustic and metadata attributes.
+
+## **Music Data Collection and Preprocessing - `music_data.ipynb`**
+
+### **Overview**  
+This Jupyter Notebook automates the process of collecting and preprocessing music-related data. It integrates multiple data sources and techniques to gather track metadata, download audio files, extract audio features, and enrich the dataset with geographical information.  
+
+### **Workflow**  
+The notebook follows these key steps:
+
+1. **Data Collection** 📊  
+   - Fetches metadata from **Last.fm**, **MusicBrainz**, and **OpenCage API** to gather track information, artist details, and geographic locations.  
+
+2. **Audio Processing** 🎧  
+   - Downloads audio tracks using `yt-dlp`.  
+   - Extracts key audio features such as MFCCs, Chroma, Tonnetz, Spectral Contrast, RMS, and more using `librosa`.  
+   - Detects the dominant language of the track using OpenAI's **Whisper** model.  
+
+3. **Data Integration & Storage** 🔄  
+   - Combines track metadata with the extracted audio features.  
+   - Ensures missing geographic coordinates are retrieved and stored for future use.  
+   - Saves the final dataset for further analysis or machine learning applications.
+
+### **Expected Output** ✅  
+- A CSV file (`all_data.csv`) containing enriched track metadata, audio features, and geographic information.  
+- Processed and cleaned datasets ready for visualization, analysis, or machine learning applications.
+
+## **Music Popularity Analysis - `music_popularity.ipynb`**
+
+### **Overview**  
+In this Jupyter Notebook, the dataset collected from `music_data.ipynb` is analyzed to predict the popularity of the tracks based on their audio features and metadata. The notebook uses various machine learning algorithms to classify the songs into different popularity categories.
+
+### **Workflow**  
+The analysis process follows these steps:
+1. **Data Preprocessing**  
+   - Data cleaning, feature engineering, and splitting the dataset into training and testing sets.
+   
+2. **Model Training**  
+   - Training a hybrid neural network model with LSTM and Dense branches to predict the popularity category.
+
+3. **Evaluation**  
+   - Evaluating the model's performance using various metrics, including accuracy, confusion matrix, and classification report.
+
+4. **Visualization**  
+   - Visualizing the model's performance and feature importance to better understand the influence of different features on popularity prediction.
+
+---
+
+## **How to Open and Run the Notebooks**
+
+To open and run the Jupyter Notebooks, follow these steps:
+
+1. **Install Jupyter Notebook** (if not installed):
+   - First, make sure you have Python installed. You can install Jupyter by running the following command in your terminal or command prompt:
+   ```bash
+   pip install notebook
+   ```
+2. **Navigate to Your Project Directory**
+
+Open a terminal or command prompt and navigate to the directory where your project files are stored.
+
+3. **Launch Jupyter Notebook:**
+
+In the terminal, type:
+```bash
+jupyter notebook
+```
+
+This will open the Jupyter Notebook interface in your web browser.
+4. ***Open the Notebooks:**
+
+In the Jupyter interface, locate and click on the following files to open them:
+`music_data.ipynb` for data collection and preprocessing.
+`music_popularity`.ipynb for analyzing the dataset and training the model.
+Run the Notebooks:
+
+Once the notebook is open, you can run each cell sequentially by selecting each one and pressing Shift + Enter.
+
+## Future Plans
 # Music Location Prediction and AI-Generated Music
+This project will focus on predicting geographical locations for music based on extracted audio features. The aim is to build a deep learning model that predicts the geographical coordinates (latitude and longitude) of a track based on its audio features.
 
-This project focuses on predicting geographical locations for music based on extracted audio features. The aim is to build a deep learning model that predicts the geographical coordinates (latitude and longitude) of a track based on its audio features. Subsequently, AI will be used to generate music that aligns with specific coordinates, creating a unique and contextually relevant music experience.
-
-## Features
-
-- **Audio Feature Extraction**: Extracts various audio features from music tracks, including Mel-Frequency Cepstral Coefficients (MFCCs), Chroma, Spectral Contrast, and Tonnetz.
-- **Location Prediction**: Uses the audio features to predict the geographical coordinates (latitude and longitude) for a given track.
-- **AI Music Generation**: Leverages AI models to generate music tailored to specific geographical coordinates.
-- **Data Collection**: Gathers metadata from Last.fm and MusicBrainz, including artist location and genre information.
-- **Country-Specific Filtering**: Limits the number of tracks per country to ensure diversity in the dataset.
-
-## Project Workflow
-
-1. **Audio Feature Extraction**: Extract audio features (MFCCs, Chroma, Spectral Contrast, and Tonnetz) from a set of music tracks.
-2. **Metadata Collection**: Fetch metadata from Last.fm and MusicBrainz, including artist name, location, and genre.
-3. **Location Prediction**: Train a deep learning model using the extracted audio features to predict the geographical coordinates (latitude and longitude).
-4. **Music Generation**: Use AI models to generate new music based on the predicted coordinates.
-5. **Output**: The output is a generated track that corresponds to specific geographical coordinates.
-
-## Project Structure
-
-- `add_coordinates.py`: Combines `country_coordinates.csv` and `world_music_data.csv` to generate `tracks_with_coordinates.csv`.
-- `all_data.csv`: Contains all data collected.
-- `combine_data.py`: Combines all data collected into `all_data.csv`.
-- `convert_songs.py`: Ensures that `.wav` files can be processed by `features.py`.
-- `country_coordinates.csv`: Contains countries and regions with corresponding capital city coordinates.
-- `download_songs.py`: Downloads songs present in `world_music_data.csv`.
-- `features.py`: Extracts MFCCs, Chroma features, Spectral contrast measures, and Tonnetz features from downloaded audio files to `audio_features.csv`.
-- `genre_mapping.json`: Contains a mapping of music genres to tags.
-- `tag_to_country.json`: Maps Last.fm tags to countries.
-- `music_data.py`: Main script to fetch and process music metadata.
-- `requirements.txt`: Lists the Python dependencies required for the project.
-- `README.md`: This file.
-
-## Setup
-
-### 1. Clone the Repository
-
-First, clone the repository to your local machine:
-
-```bash
-git clone https://github.com/ladalar/beata
-cd beata
-```
-
-### 2. Install Dependencies
-
-The project requires Python and a few dependencies. To install them, run:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Collect Data
-
-This repository includes a precompiled dataset, `all_data.csv`, created from a personal collection. To collect and generate new data, follow these steps:
-
-#### Step 1: API Keys
-
-You need a Last.fm API key to fetch data. To obtain your key, follow these steps:
-
-- Go to Last.fm API and sign up.
-- Create an application to generate your API key.
-- Once you have the API key, create a `.env` file in the project directory with the following content:
-
-```bash
-LASTFM_API_KEY=your_lastfm_api_key_here
-```
-
-#### Step 2: Collect Basic Track Data
-
-Navigate to the data_collection folder and run:
-
-```bash
-python music_data.py
-```
-
-This script generates a file named `world_music.csv` containing the following columns:
-
-- `track_id`
-- `track_name`
-- `artist_name`
-- `location`
-- `listeners`
-- `genre`
-
-#### Step 3: Add Geographic Coordinates
-
-To enrich the data with geographic coordinates, run:
-
-```bash
-python add_coordinates.py
-```
-
-This will create a new file, `tracks_with_coordinates.csv`, which includes the coordinates for each track.
-
-#### Step 4: Download Songs
-
-Download the audio files for the tracks listed in `world_music.csv` by running:
-
-```bash
-python download_songs.py
-```
-
-The songs will be saved in a folder named `downloaded_songs`.
-
-#### Step 5: Extract Audio Features
-
-Extract audio features from the downloaded songs with the following command:
-
-```bash
-python features.py
-```
-
-This script processes the songs in the `downloaded_songs` folder and saves the extracted features in a file named `audio_features.csv`.
-
-#### Step 6: Combine All Data
-
-Finally, combine all collected data into a single file:
-
-```bash
-python combine_data.py
-```
-
-This will merge `audio_features.csv` and `tracks_with_coordinates.csv` into a comprehensive dataset, `all_data.csv`.
-
-#### all_data.csv
-- **Track Information**
-    - `track_id`: Unique identifier for each track.
-    - `track_name`: Title of the track.
-    - `artist_name`: Name of the artist who performed the track.
-    - `location`: Location associated with the artist (potentially where they are from or based).
-    - `listeners`: Number of listeners for the track on Last.fm (if available).
-    - `genre`: Genre of the track (potentially obtained from Last.fm tags).
-- **Geographical Information**:
-    - `Country`: Country of the artist's origin (potentially inferred from location or artist information).
-    - `Capital`: Capital city of the artist's country (if applicable).
-    - `Latitude`: Latitude coordinate of the capital city (if available).
-    - `Longitude`: Longitude coordinate of the capital city (if available).
-- **Audio Features**:
-    - `MFCC1 - MFCC20`: Mel-Frequency Cepstral Coefficients (MFCCs) represent the short-term power spectrum of a sound, commonly used in audio feature extraction and music information retrieval.
-    - `Chroma1 - Chroma12`: Chroma features represent the strength of the 12 pitch classes (C, C#, D, ..., B) in the music.
-    - `Spectral Contrast1 - Spectral Contrast7`: Spectral contrast measures the difference in energy between bands of frequencies.
-    - `Tonnetz1 - Tonnetz6`: Tonnetz features represent the position of the sound in a psychoacoustically-inspired 6-dimensional space.
-
-### Example Output
-
-```csv
-track_id,track_name,artist_name,location,listeners,genre,Country,Capital,Latitude,Longitude,MFCC1,MFCC2,MFCC3,MFCC4,MFCC5,MFCC6,MFCC7,MFCC8,MFCC9,MFCC10,MFCC11,MFCC12,MFCC13,MFCC14,MFCC15,MFCC16,MFCC17,MFCC18,MFCC19,MFCC20,Chroma1,Chroma2,Chroma3,Chroma4,Chroma5,Chroma6,Chroma7,Chroma8,Chroma9,Chroma10,Chroma11,Chroma12,Spectral Contrast1,Spectral Contrast2,Spectral Contrast3,Spectral Contrast4,Spectral Contrast5,Spectral Contrast6,Spectral Contrast7,Tonnetz1,Tonnetz2,Tonnetz3,Tonnetz4,Tonnetz5,Tonnetz6
-1,Saoko,Rosalía,Spain,1357002,Traditional,Spain,Madrid,40.42,-3.75,-77.41459656,52.02815246582031,-3.623052359,26.31342887878418,-6.456990242,4.815507411956787,-0.890465736,1.266771436,-4.186604977,8.584629059,-4.188908577,-1.132911921,-4.31681633,-3.103135586,-6.049440384,-2.329935551,-9.885704994,0.4364224076271057,-5.408226967,-3.179271221,0.423987865,0.4096793234348297,0.3129310607910156,0.3942963778972626,0.3675473928451538,0.2445663064718246,0.2352212965488433,0.3119161128997803,0.5756404995918274,0.451972634,0.3388523757457733,0.3229532837867737,18.671025343659387,16.510451585655943,19.57577634269491,20.28098252185062,20.19127154826591,19.324665797656024,48.27960009715634,-0.027142259,-0.020731049,-0.021391769,0.044810451,-0.007973986,-0.004324663
-```
-
-### 5. Training the Deep Learning Model
-
-After gathering sufficient data, use the extracted features to train a deep learning model to predict the geographical coordinates (latitude and longitude).
-
-- Load the CSV data.
-- Preprocess the data (e.g., normalize the features).
-- Train the model on the features and coordinates.
-- Evaluate the model's performance.
-
-### 6. AI Music Generation
-
-Leverage models like Jukebox to generate new music tracks based on geographic coordinates. Follow these steps to get started:
-
-
-### Notes
-
-- **API Rate Limiting**: The script sleeps for 0.5 seconds between requests to avoid hitting the Last.fm API too quickly.
-- **Max Tracks per Country**: The script is configured to include a maximum of 50 tracks per country.
-- **Missing Data**: If the location is not available from Last.fm, the script will attempt to derive the location from the associated tag.
+Subsequently, AI will be used to generate music that aligns with specific geographical coordinates, creating a unique and contextually relevant music experience. This will open the door for more personalized and location-aware music generation, enhancing the way music is experienced across different regions.
