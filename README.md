@@ -1,4 +1,9 @@
-## **Overview**  
+# Music Location Prediction and AI-Generated Music
+This project focuses on predicting geographical locations for music based on extracted audio features. The aim is to build a deep learning model that predicts the geographical coordinates (latitude and longitude) of a track based on its audio features.
+
+Subsequently, AI will be used to generate music that aligns with specific geographical coordinates, creating a unique and contextually relevant music experience. This will open the door for more personalized and location-aware music generation, enhancing the way music is experienced across different regions.
+
+# Music Popularity Prediction
 This project aims to predict the popularity category of a song—low, medium, or high listener counts—based on various extracted audio features. By leveraging machine learning techniques, the model classifies songs using key acoustic and metadata attributes.
 
 ## **Music Data Collection and Preprocessing - `music_data.ipynb`**
@@ -76,9 +81,3 @@ In the Jupyter interface, locate and click on the following files to open them:
 Run the Notebooks:
 
 Once the notebook is open, you can run each cell sequentially by selecting each one and pressing Shift + Enter.
-
-## Future Plans
-# Music Location Prediction and AI-Generated Music
-This project will focus on predicting geographical locations for music based on extracted audio features. The aim is to build a deep learning model that predicts the geographical coordinates (latitude and longitude) of a track based on its audio features.
-
-Subsequently, AI will be used to generate music that aligns with specific geographical coordinates, creating a unique and contextually relevant music experience. This will open the door for more personalized and location-aware music generation, enhancing the way music is experienced across different regions.
